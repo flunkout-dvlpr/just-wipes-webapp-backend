@@ -6,10 +6,6 @@ Resources:
   JustWipesCognitoUserPool:
     Type: AWS::Cognito::UserPool
     Properties: 
-      # AliasAttributes: 
-      #   - "phone_number"
-      # LambdaConfig: 
-      #   LambdaConfig
       MfaConfiguration: "OFF"
       Policies: 
         PasswordPolicy: 
@@ -19,47 +15,60 @@ Resources:
            RequireSymbols: False
            RequireUppercase: False
            TemporaryPasswordValidityDays: 3
-      # Schema: 
-      #   - SchemaAttribute
-      # SmsAuthenticationMessage: String
-      # SmsConfiguration: 
-      #   SmsConfiguration
-      # SmsVerificationMessage: String
       UsernameAttributes: 
         - "phone_number"
+      LambdaConfig: 
+         PreSignUp: !Ref PreSignUp
+         DefineAuthChallenge: !Ref DefineAuthChallenge
       UsernameConfiguration: 
         CaseSensitive: False
-      # UserPoolAddOns: 
-      #   UserPoolAddOns
       UserPoolName: "Just-Wipes"
+
   JustWipesCognitoUserPoolClient:
       Type: AWS::Cognito::UserPoolClient
       Properties: 
         AccessTokenValidity: 1
-        # AllowedOAuthFlows: 
-        #   - String
-        # AllowedOAuthFlowsUserPoolClient: Boolean
-        # AllowedOAuthScopes: 
-        #   - String
-        # AnalyticsConfiguration: 
-        #   AnalyticsConfiguration
-        # CallbackURLs: 
-        #   - String
         ClientName: "just-wipes-webapp"
-        # DefaultRedirectURI: String
         ExplicitAuthFlows: [ "ALLOW_CUSTOM_AUTH", "ALLOW_REFRESH_TOKEN_AUTH"]
         GenerateSecret: False
         IdTokenValidity: 1
-        # LogoutURLs: 
-        #   - String
         PreventUserExistenceErrors: ENABLED
-        # ReadAttributes: 
-        #   - String
         RefreshTokenValidity: 1
-        # SupportedIdentityProviders: 
-        #   - String
-        # TokenValidityUnits: 
-        #   TokenValidityUnits
         UserPoolId: !Ref JustWipesCognitoUserPool
-        # WriteAttributes: 
-        #   - String
+
+  PreSignUp:
+    Type: 'AWS::Serverless::Function'
+    Properties:    
+      Handler: function.handler
+      Runtime: python3.7
+      CodeUri: ./lambdas/cognito/pre-sign-up
+      Description: 'Lambda function for cognito pre signup trigger'
+      MemorySize: 128
+      Timeout: 30
+      Role: 'arn:aws:iam::672841565100:role/LambdaRole'
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-fb2c0281
+        SubnetIds:
+          - subnet-efa0a595
+          - subnet-d169059d
+          - subnet-cb25eaa0
+
+  DefineAuthChallenge:
+    Type: 'AWS::Serverless::Function'
+    Properties:    
+      Handler: function.handler
+      Runtime: python3.7
+      CodeUri: ./lambdas/cognito/define-auth-challenge
+      Description: 'Lambda function for cognito define auth challenge trigger'
+      MemorySize: 128
+      Timeout: 30
+      Role: 'arn:aws:iam::672841565100:role/LambdaRole'
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-fb2c0281
+        SubnetIds:
+          - subnet-efa0a595
+          - subnet-d169059d
+          - subnet-cb25eaa0
+      
