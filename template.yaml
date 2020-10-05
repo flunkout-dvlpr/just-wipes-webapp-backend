@@ -6,8 +6,8 @@ Resources:
   JustWipesCognito:
     Type: AWS::Cognito::UserPool
     Properties: 
-      AliasAttributes: 
-        - "phone_number"
+      # AliasAttributes: 
+      #   - "phone_number"
       # LambdaConfig: 
       #   LambdaConfig
       MfaConfiguration: "OFF"
