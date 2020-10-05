@@ -35,7 +35,7 @@ Resources:
   JustWipesCognitoUserPoolClient:
       Type: AWS::Cognito::UserPoolClient
       Properties: 
-        AccessTokenValidity: 86400
+        # AccessTokenValidity: 86400
         # AllowedOAuthFlows: 
         #   - String
         # AllowedOAuthFlowsUserPoolClient: Boolean
@@ -50,13 +50,13 @@ Resources:
         # ExplicitAuthFlows: 
         #   - String
         GenerateSecret: False
-        IdTokenValidity: 86400
+        # IdTokenValidity: 86400
         # LogoutURLs: 
         #   - String
         PreventUserExistenceErrors: ENABLED
         # ReadAttributes: 
         #   - String
-        RefreshTokenValidity: 315360000
+        # RefreshTokenValidity: 315360000
         # SupportedIdentityProviders: 
         #   - String
         # TokenValidityUnits: 
