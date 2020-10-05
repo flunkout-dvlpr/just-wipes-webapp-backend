@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: Auto Shop CRM API
+
+Resources:
+  JustWipesCognito:
+    Type: AWS::Cognito::UserPool
+    Properties: 
+      AliasAttributes: 
+        - "phone_number"
+      # LambdaConfig: 
+      #   LambdaConfig
+      MfaConfiguration: "OFF"
+      # Policies: 
+      #   Policies
+      # Schema: 
+      #   - SchemaAttribute
+      # SmsAuthenticationMessage: String
+      # SmsConfiguration: 
+      #   SmsConfiguration
+      # SmsVerificationMessage: String
+      UsernameAttributes: 
+        - "phone_number"
+      # UsernameConfiguration: 
+      #   UsernameConfiguration
+      UserPoolAddOns: 
+        UserPoolAddOns
+      UserPoolName: "Just-Wipes"
