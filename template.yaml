@@ -23,6 +23,6 @@ Resources:
         - "phone_number"
       # UsernameConfiguration: 
       #   UsernameConfiguration
-      UserPoolAddOns: 
-        UserPoolAddOns
+      # UserPoolAddOns: 
+      #   UserPoolAddOns
       UserPoolName: "Just-Wipes"
