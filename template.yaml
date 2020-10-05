@@ -48,7 +48,7 @@ Resources:
         ClientName: "just-wipes-webapp"
         # DefaultRedirectURI: String
         ExplicitAuthFlows:
-          - [ALLOW_CUSTOM_AUTH, ALLOW_REFRESH_TOKEN_AUTH]
+          - [ "ALLOW_CUSTOM_AUTH", "ALLOW_REFRESH_TOKEN_AUTH"]
         GenerateSecret: False
         IdTokenValidity: 1
         # LogoutURLs: 
