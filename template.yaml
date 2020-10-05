@@ -50,13 +50,13 @@ Resources:
         # ExplicitAuthFlows: 
         #   - String
         GenerateSecret: False
-        # IdTokenValidity: 86400
+        IdTokenValidity: 1
         # LogoutURLs: 
         #   - String
         PreventUserExistenceErrors: ENABLED
         # ReadAttributes: 
         #   - String
-        # RefreshTokenValidity: 315360000
+        RefreshTokenValidity: 1
         # SupportedIdentityProviders: 
         #   - String
         # TokenValidityUnits: 
