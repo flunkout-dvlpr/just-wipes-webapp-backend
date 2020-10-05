@@ -3,7 +3,7 @@ Transform: 'AWS::Serverless-2016-10-31'
 Description: Auto Shop CRM API
 
 Resources:
-  JustWipesCognito:
+  JustWipesCognitoUserPool:
     Type: AWS::Cognito::UserPool
     Properties: 
       # AliasAttributes: 
@@ -32,3 +32,35 @@ Resources:
       # UserPoolAddOns: 
       #   UserPoolAddOns
       UserPoolName: "Just-Wipes"
+  JustWipesCognitoUserPoolClient:
+      Type: AWS::Cognito::UserPoolClient
+      Properties: 
+        AccessTokenValidity: 86400
+        # AllowedOAuthFlows: 
+        #   - String
+        # AllowedOAuthFlowsUserPoolClient: Boolean
+        # AllowedOAuthScopes: 
+        #   - String
+        # AnalyticsConfiguration: 
+        #   AnalyticsConfiguration
+        # CallbackURLs: 
+        #   - String
+        ClientName: "just-wipes-webapp"
+        # DefaultRedirectURI: String
+        # ExplicitAuthFlows: 
+        #   - String
+        GenerateSecret: False
+        IdTokenValidity: 86400
+        # LogoutURLs: 
+        #   - String
+        PreventUserExistenceErrors: ENABLED
+        # ReadAttributes: 
+        #   - String
+        RefreshTokenValidity: 86400
+        # SupportedIdentityProviders: 
+        #   - String
+        # TokenValidityUnits: 
+        #   TokenValidityUnits
+        UserPoolId: us-east-2_klwsnXsQ5
+        # WriteAttributes: 
+        #   - String
