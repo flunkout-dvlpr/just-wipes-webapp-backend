@@ -35,7 +35,7 @@ Resources:
   JustWipesCognitoUserPoolClient:
       Type: AWS::Cognito::UserPoolClient
       Properties: 
-        # AccessTokenValidity: 86400
+        AccessTokenValidity: 1
         # AllowedOAuthFlows: 
         #   - String
         # AllowedOAuthFlowsUserPoolClient: Boolean
