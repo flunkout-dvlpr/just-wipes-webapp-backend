@@ -18,8 +18,8 @@ Resources:
       UsernameAttributes: 
         - "phone_number"
       LambdaConfig: 
-         PreSignUp: !Ref PreSignUp
-         DefineAuthChallenge: !Ref DefineAuthChallenge
+         PreSignUp: !GetAtt PreSignUp.Arn
+         DefineAuthChallenge: !GetAtt DefineAuthChallenge.Arn
       UsernameConfiguration: 
         CaseSensitive: False
       UserPoolName: "Just-Wipes"
