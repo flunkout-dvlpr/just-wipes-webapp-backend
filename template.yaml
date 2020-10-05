@@ -56,7 +56,7 @@ Resources:
         PreventUserExistenceErrors: ENABLED
         # ReadAttributes: 
         #   - String
-        RefreshTokenValidity: 86400
+        RefreshTokenValidity: 315360000
         # SupportedIdentityProviders: 
         #   - String
         # TokenValidityUnits: 
