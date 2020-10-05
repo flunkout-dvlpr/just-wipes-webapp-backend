@@ -11,8 +11,14 @@ Resources:
       # LambdaConfig: 
       #   LambdaConfig
       MfaConfiguration: "OFF"
-      # Policies: 
-      #   Policies
+      Policies: 
+        PasswordPolicy: 
+           MinimumLength: 6
+           RequireLowercase: True
+           RequireNumbers: False
+           RequireSymbols: False
+           RequireUppercase: False
+           TemporaryPasswordValidityDays: 3
       # Schema: 
       #   - SchemaAttribute
       # SmsAuthenticationMessage: String
@@ -21,8 +27,8 @@ Resources:
       # SmsVerificationMessage: String
       UsernameAttributes: 
         - "phone_number"
-      # UsernameConfiguration: 
-      #   UsernameConfiguration
+      UsernameConfiguration: 
+        CaseSensitive: False
       # UserPoolAddOns: 
       #   UserPoolAddOns
       UserPoolName: "Just-Wipes"
