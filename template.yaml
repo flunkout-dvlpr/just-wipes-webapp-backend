@@ -61,6 +61,6 @@ Resources:
         #   - String
         # TokenValidityUnits: 
         #   TokenValidityUnits
-        UserPoolId: us-east-2_klwsnXsQ5
+        UserPoolId: !Ref JustWipesCognitoUserPool
         # WriteAttributes: 
         #   - String
