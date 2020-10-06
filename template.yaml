@@ -18,8 +18,10 @@ Resources:
       UsernameAttributes: 
         - "phone_number"
       LambdaConfig: 
-         PreSignUp: !GetAtt PreSignUp.Arn
-         DefineAuthChallenge: !GetAtt DefineAuthChallenge.Arn
+        PreSignUp: !GetAtt PreSignUp.Arn
+        DefineAuthChallenge: !GetAtt DefineAuthChallenge.Arn
+        CreateAuthChallenge: !GetAtt CreateAuthChallenge.Arn
+        VerifyAuthChallengeResponse: !GetAtt VerifyAuthChallenge.Arn
       UsernameConfiguration: 
         CaseSensitive: False
       UserPoolName: "Just-Wipes"
@@ -72,3 +74,56 @@ Resources:
           - subnet-d169059d
           - subnet-cb25eaa0
       
+  CreateAuthChallenge:
+    Type: 'AWS::Serverless::Function'
+    Properties:    
+      Handler: function.handler
+      Runtime: python3.7
+      CodeUri: ./lambdas/cognito/create-auth-challenge
+      Description: 'Lambda function for cognito create auth challenge trigger'
+      MemorySize: 128
+      Timeout: 30
+      Role: 'arn:aws:iam::672841565100:role/LambdaRole'
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-fb2c0281
+        SubnetIds:
+          - subnet-efa0a595
+          - subnet-d169059d
+          - subnet-cb25eaa0
+
+  # RespondAuthChallenge:
+  #   Type: 'AWS::Serverless::Function'
+  #   Properties:    
+  #     Handler: function.handler
+  #     Runtime: python3.7
+  #     CodeUri: ./lambdas/cognito/respond-auth-challenge
+  #     Description: 'Lambda function for cognito respond auth challenge trigger'
+  #     MemorySize: 128
+  #     Timeout: 30
+  #     Role: 'arn:aws:iam::672841565100:role/LambdaRole'
+  #     VpcConfig:
+  #       SecurityGroupIds:
+  #         - sg-fb2c0281
+  #       SubnetIds:
+  #         - subnet-efa0a595
+  #         - subnet-d169059d
+  #         - subnet-cb25eaa0
+
+  VerifyAuthChallenge:
+    Type: 'AWS::Serverless::Function'
+    Properties:    
+      Handler: function.handler
+      Runtime: python3.7
+      CodeUri: ./lambdas/cognito/verify-auth-challenge
+      Description: 'Lambda function for cognito verify auth challenge trigger'
+      MemorySize: 128
+      Timeout: 30
+      Role: 'arn:aws:iam::672841565100:role/LambdaRole'
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-fb2c0281
+        SubnetIds:
+          - subnet-efa0a595
+          - subnet-d169059d
+          - subnet-cb25eaa0
