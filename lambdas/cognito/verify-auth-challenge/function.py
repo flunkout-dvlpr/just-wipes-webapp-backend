@@ -1,4 +1,4 @@
-def lambda_handler(event, context):
+def handler(event, context):
   """Verify Auth Challenge
 
   """

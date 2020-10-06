@@ -47,7 +47,7 @@ Resources:
       Description: 'Lambda function for cognito pre signup trigger'
       MemorySize: 128
       Timeout: 30
-      Role: 'arn:aws:iam::672841565100:role/LambdaRole'
+      Role: 'arn:aws:iam::672841565100:role/CognitoLambdaRole'
       VpcConfig:
         SecurityGroupIds:
           - sg-fb2c0281
@@ -65,7 +65,7 @@ Resources:
       Description: 'Lambda function for cognito define auth challenge trigger'
       MemorySize: 128
       Timeout: 30
-      Role: 'arn:aws:iam::672841565100:role/LambdaRole'
+      Role: 'arn:aws:iam::672841565100:role/CognitoLambdaRole'
       VpcConfig:
         SecurityGroupIds:
           - sg-fb2c0281
@@ -83,7 +83,7 @@ Resources:
       Description: 'Lambda function for cognito create auth challenge trigger'
       MemorySize: 128
       Timeout: 30
-      Role: 'arn:aws:iam::672841565100:role/LambdaRole'
+      Role: 'arn:aws:iam::672841565100:role/CognitoLambdaRole'
       VpcConfig:
         SecurityGroupIds:
           - sg-fb2c0281
@@ -101,7 +101,7 @@ Resources:
   #     Description: 'Lambda function for cognito respond auth challenge trigger'
   #     MemorySize: 128
   #     Timeout: 30
-  #     Role: 'arn:aws:iam::672841565100:role/LambdaRole'
+  #     Role: 'arn:aws:iam::672841565100:role/CognitoLambdaRole'
   #     VpcConfig:
   #       SecurityGroupIds:
   #         - sg-fb2c0281
@@ -119,7 +119,7 @@ Resources:
       Description: 'Lambda function for cognito verify auth challenge trigger'
       MemorySize: 128
       Timeout: 30
-      Role: 'arn:aws:iam::672841565100:role/LambdaRole'
+      Role: 'arn:aws:iam::672841565100:role/CognitoLambdaRole'
       VpcConfig:
         SecurityGroupIds:
           - sg-fb2c0281

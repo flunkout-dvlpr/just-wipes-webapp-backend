@@ -1,4 +1,4 @@
-def lambda_handler(event, context):
+def handler(event, context):
   """Define Auth Challenge Trigger
   """
   response = event.get('response')

@@ -2,7 +2,7 @@ import random
 import string
 import boto3
 
-def lambda_handler(event, context):
+def handler(event, context):
   """Create Challenge and then Send Notification
   """
   response = event.get('response')
