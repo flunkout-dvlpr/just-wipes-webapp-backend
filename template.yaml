@@ -31,10 +31,13 @@ Resources:
       Properties: 
         AccessTokenValidity: 1
         ClientName: "just-wipes-webapp"
-        ExplicitAuthFlows: [ "ALLOW_CUSTOM_AUTH", "ALLOW_REFRESH_TOKEN_AUTH"]
+        ExplicitAuthFlows: 
+          - "ALLOW_CUSTOM_AUTH"
+          - "ALLOW_REFRESH_TOKEN_AUTH"
         GenerateSecret: False
         IdTokenValidity: 1
-        PreventUserExistenceErrors: ENABLED
+        PreventUserExistenceErrors:
+          - "ENABLED"
         RefreshTokenValidity: 1
         UserPoolId: !Ref JustWipesCognitoUserPool
 
