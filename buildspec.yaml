@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      python: 3.7
+      nodejs: 10
   build:
     commands:
       - sam build
