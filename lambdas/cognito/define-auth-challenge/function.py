@@ -40,5 +40,6 @@ def handler(event, context):
       'failAuthentication': False,
       'challengeName': 'CUSTOM_CHALLENGE'
     })
+  print(event)
 
   return  event
