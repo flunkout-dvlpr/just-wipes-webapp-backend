@@ -1,0 +1,8 @@
+{
+  "name": "verify-auth-challenge",
+  "version": "0.0.1",
+  "main": "function.js",
+  "dependencies": {
+    "axios": "latest"
+  }
+}

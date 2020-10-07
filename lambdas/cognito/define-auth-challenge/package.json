@@ -1,0 +1,5 @@
+{
+  "name": "define-auth-challenge",
+  "version": "0.0.1",
+  "main": "function.js"
+}
