@@ -1,12 +1,15 @@
 const AWS = require('aws-sdk');
 
+AWS.config.region = 'us-west-1'
+
 function sendSMS(phone, code) {
     const params = {
       Message: code, /* required */
       PhoneNumber: phone,
     };
     
-    return new AWS.SNS({apiVersion: '2010-03-31'}).publish(params).promise();
+    return new AWS.SNS({apiVersion: '2010-03-31'}).publish(params).promise()
+    .catch(error => console.log(error));
 }
 
 exports.handler = async (event) => {
@@ -17,11 +20,9 @@ exports.handler = async (event) => {
 
         // Generate a new secret login code and send it to the user
         secretLoginCode = Date.now().toString().slice(-4);
-        try {
-            await sendSMS(event.request.userAttributes.phone_number, secretLoginCode);
-        } catch {
-            console.log('It Failed!')
-        }
+
+        await sendSMS(event.request.userAttributes.phone_number, secretLoginCode);
+
     } else {
 
         // re-use code generated in previous challenge
