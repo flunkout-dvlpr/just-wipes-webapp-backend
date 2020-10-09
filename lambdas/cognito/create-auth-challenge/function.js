@@ -17,7 +17,11 @@ exports.handler = async (event) => {
 
         // Generate a new secret login code and send it to the user
         secretLoginCode = Date.now().toString().slice(-4);
-        await sendSMS(event.request.userAttributes.phone_number, secretLoginCode);
+        try {
+            await sendSMS(event.request.userAttributes.phone_number, secretLoginCode);
+        } catch {
+            console.log('It Failed!')
+        }
     } else {
 
         // re-use code generated in previous challenge
