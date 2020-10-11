@@ -2,6 +2,29 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: 'AWS::Serverless-2016-10-31'
 Description: Just Wipes Backend
 
+Globals:
+  Api:
+    Auth:
+      Authorizers:
+        CognitoAuth:
+          UserPoolArn:
+            - !GetAtt JustWipesCognitoUserPool.Arn
+    
+    # Allows API calls everywhere 
+    Cors:
+      AllowMethods: "'OPTIONS,POST,GET,DELETE'"
+      AllowHeaders: "'Content-Type,Authorization'"
+      AllowOrigin: "'*'"
+    GatewayResponses:
+      DEFAULT_5xx:
+        ResponseParameters:
+          Headers:
+            Access-Control-Allow-Origin: "'*'"
+      DEFAULT_4xx:
+        ResponseParameters:
+          Headers:
+            Access-Control-Allow-Origin: "'*'"
+
 Resources:
   JustWipesCognitoUserPool:
     Type: AWS::Cognito::UserPool
@@ -111,3 +134,30 @@ Resources:
           - subnet-0afb59bb4aef42c2c
           - subnet-03576e05e1e4e7a10
           - subnet-0c012bb7fafb41627
+
+  GetUserData:
+    Type: 'AWS::Serverless::Function'
+    Properties:    
+      Handler: function.handler
+      Runtime: python3.7
+      CodeUri: ./lambdas/data/get-by-phone
+      Description: 'Lambda function to get user data from s3 bucket'
+      MemorySize: 128
+      Timeout: 30
+      Role: 'arn:aws:iam::672841565100:role/LambdaRole'
+      Events:
+        function:
+          Type: Api
+          Properties:
+            Auth:
+              Authorizer: CognitoAuth
+            Path: /data/get-by-phone
+            Method: post
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-fb2c0281
+        SubnetIds:
+          - subnet-0afb59bb4aef42c2c
+          - subnet-03576e05e1e4e7a10
+          - subnet-0c012bb7fafb41627
+
