@@ -2,9 +2,9 @@ const AWS = require('aws-sdk');
 
 AWS.config.region = 'us-west-1'
 
-function sendSMS(phone, code) {
+function sendSMS(phone, message) {
     const params = {
-      Message: code, /* required */
+      Message: message, /* required */
       PhoneNumber: phone,
     };
     
@@ -21,7 +21,9 @@ exports.handler = async (event) => {
         // Generate a new secret login code and send it to the user
         secretLoginCode = Date.now().toString().slice(-4);
 
-        await sendSMS(event.request.userAttributes.phone_number, secretLoginCode);
+        const name = event.request.userAttributes.name
+        const message = `Welcome to Just Wipes ${name}!, here is your one time code: ${secretLoginCode}`
+        await sendSMS(event.request.userAttributes.phone_number, message);
 
     } else {
 
