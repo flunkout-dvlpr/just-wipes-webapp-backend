@@ -20,10 +20,17 @@ exports.handler = async (event) => {
 
         // Generate a new secret login code and send it to the user
         secretLoginCode = Date.now().toString().slice(-4);
-
-        const name = event.request.userAttributes.name
-        const message = `Welcome to Just Wipes ${name}!, here is your one time code: ${secretLoginCode}`
-        await sendSMS(event.request.userAttributes.phone_number, message);
+        if (event.request.userAttributes.phone_number === '+10000000000') {
+            // Generate a demo user code
+            console.log('Demo User - No SMS')
+            secretLoginCode = '0000'
+        } else {
+            // Generate a new secret login code and send it to the user
+            secretLoginCode = Date.now().toString().slice(-4);
+            const name = event.request.userAttributes.name
+            const message = `Welcome to Just Wipes ${name}!, here is your one time code: ${secretLoginCode}`
+            await sendSMS(event.request.userAttributes.phone_number, message);
+        }
 
     } else {
 
